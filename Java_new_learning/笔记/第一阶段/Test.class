@@ -1,0 +1,8 @@
+漱壕   < *
+      java/lang/Object <init> ()V  java/util/Scanner	 
+     java/lang/System in Ljava/io/InputStream;
+     (Ljava/io/InputStream;)V	 
+    out Ljava/io/PrintStream;
+      java/io/PrintStream println (I)V  Hello World!
+      (Ljava/lang/String;)V " Test Code LineNumberTable main ([Ljava/lang/String;)V StackMapTable 
+SourceFile 	Test.java ! !           #        *? ?    $        	 % &  #   f     (? Y? 	? L=? ? ? ? ? ??楸    $             	 !  '  '    ?  ?   (    )

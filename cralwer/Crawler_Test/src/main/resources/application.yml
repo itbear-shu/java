@@ -1,0 +1,11 @@
+spring:
+  # 数据库配置 mysql8
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///crawler?useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 12345
+  # jpa配置
+  jpa:
+    database: MySQL
+    show-sql: true

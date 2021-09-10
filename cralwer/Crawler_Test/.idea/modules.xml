@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Crawler_Test.iml" filepath="$PROJECT_DIR$/Crawler_Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Poems_Crawler/Poems_Crawler.iml" filepath="$PROJECT_DIR$/../Poems_Crawler/Poems_Crawler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SpringBoot_learning/SpringBoot_learning.iml" filepath="$PROJECT_DIR$/../SpringBoot_learning/SpringBoot_learning.iml" />
+    </modules>
+  </component>
+</project>

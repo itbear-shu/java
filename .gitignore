@@ -1,0 +1,8 @@
+# Project exclude paths
+/cralwer/crawler_gai/target/
+/cralwer/crawler_jd/target/
+/cralwer/Crawler_Test/target/
+/cralwer/crawler_webmagic_poem/target/
+/cralwer/itcast_crawler_fisrt/target/
+/cralwer/itcast_crawler_iob/target/
+/cralwer/itcast_crawler_WebMagic/target/
