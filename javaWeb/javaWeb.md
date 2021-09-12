@@ -2297,7 +2297,7 @@ JavaWeb：
 
 ## 3、CSS
 
-**CSS**：*Cascading Style Sheets* 层叠样式表。用于页面美化和布局控制。
+**CSS**：Cascading Style Sheets 层叠样式表。用于页面美化和布局控制。
 
 + 层叠：多个样式可以作用在同一个html元素上，同时生效。
 + 功能强大
@@ -2610,7 +2610,18 @@ JavaWeb：
   + 与html结合方式
 
     + 内部JS：定义`<script>`，标签内容就是js代码。
+
+      ```html
+      <script>
+          alert("hello");
+      </script>
+      ```
+
     + 外部JS：定义`<script>`，提高src属性引入外部js文件
+
+      ```html
+      <script src="a.js"></script>
+      ```
 
     > 注意：
     >
@@ -2638,7 +2649,7 @@ JavaWeb：
 
   + 变量：一小块存储数据的内存空间。
 
-    + Java是强类型语言，JavaScript是弱类型语言。
+    + Java是强类型语言，JavaScript是**弱类型**语言。
 
       > 强类型：在开辟变量存储空间时，定义了空间来存储数据的数据类型。只能存储固定类型的数据。
       >
@@ -2648,7 +2659,7 @@ JavaWeb：
 
   + 运算符
 
-    + typeof运算符：获取变量的类型。**注意：null运算后得到object。**
+    + `typeof`运算符：获取变量的类型。**注意：null运算后得到object。**
 
     + 一元运算符：只有一个运算数的运算符
 
@@ -2656,20 +2667,20 @@ JavaWeb：
 
       > 注意：如果运算数不是运算符所要求的类型，则JS引擎会自动将运算数进行类型转换。
 
-      + string转换number：按字面值转换。如果数值不是数字，则转换为**NaN**。
-      + boolean转换number：true转换为1，false转换为0。
+      + *string转换number*：按字面值转换。如果数值不是数字，则转换为**NaN**。
+      + *boolean转换number*：true转换为1，false转换为0。
 
     + 算数运算符：**a/b得小数。**
 
-    + 赋值运算符
+    + 赋值运算符: =
 
     + 比较运算符
 
       + 比较方式
-        + 类型相同：直接比较
+        + **类型相同**：直接比较
           + 字符串：按照字典顺序进行比较。按位逐一比较，直到得出大小为止。
-        + 类型不同：先进行类型转换，再比较。
-          + `===`：全等于。在比较前，先判断类型，如果类型不同，则直接返回false。
+        + **类型不同**：先进行类型转换，再比较。
+          + `===`：全等于。在比较前，先判断类型，**如果类型不同，则直接返回false。**
 
     + 逻辑运算符
 
@@ -2697,7 +2708,7 @@ JavaWeb：
     > 2.变量定义可以使用`var`关键字，也可以省略。
     >
     > + 使用：定义的是局部变量。
-    > + 不用：定义的是全局变量（不推荐）。
+    > + 不用：定义的是全局变量（**不推荐**）。
 
   **练习：HTML、CSS、JavaScript**
 
@@ -2764,9 +2775,9 @@ JavaWeb：
     + 特点
 
       + 1.方法定义时，形参类型不写。
-      + 2.方法是一个对象，如果定义名称相同的方法，会覆盖。
-      + 3.在JS中，方法的调用至于方法和名称有关，与参数列表无关。
-      + 4.在方法声明中有一个隐藏的内置对象（数组），**arguments**，封装所有的实际参数。
+      + 2.方法是一个对象，如果**定义名称相同的方法，会覆盖**。
+      + 3.在JS中，方法的调用只于方法的名称有关，与参数列表无关。
+      + **4**.在方法声明中有一个隐藏的内置对象（数组），**arguments**，封装所有的实际参数。
     
     + 调用
 
@@ -2782,112 +2793,138 @@ JavaWeb：
           }
           return sum;
     }
+    
+    //调用
+    alert(add(1, 2, 3, 4, 5, 5));
     ```
     
   + **Array**：数组对象
-
+  
     + 创建
-
+  
       ```js
       var arr = new Array(元素列表);
       var arr = new Array(默认长度);
       var arr = [元素列表];
       ```
-
+  
     + 方法
 
-      + `join(参数)`：以参数作为分隔符组成字符串。
-      + `push(参数)`：向数组添加新元素的最佳方法。
-
+      + `join(参数)`：以参数作为**分隔符**组成字符串。
+      + `push(参数)`：向数组添加**新元素**的最佳方法。
+  
     + 属性
-
+  
       + length：数组长度。
-
+  
     + 特点
 
       + 1.JS中，数组元素的类型可变。
       + 2.JS中，数组长度可变。不会越界。未赋值则为`undefined`。
-
+  
   + **Date**：日期对象。
-
+  
     + 创建
-
+  
       ```js
       var date = new Date();
       ```
-
+  
     + 方法
-
+  
       + ```js
         toLocaleString();//返回当前date对应时间的本地格式 
         ```
-
+  
       + ```js
         getTime();//返回1970年1月1日距近的时间的毫秒值
         ```
-
+  
   + **Math**：数学对象。
-
-    + 创建：不用创建，直接使用。`Math.方法ming()`
-
+  
+    + 创建：不用创建，直接使用。`Math.方法名()`
+  
     + 方法
-
-      + `random()`： 返回 0 ~ 1 之间的随机数。**含0不含1**。
+  
+      + `random()`： 返回 0 ~ 1 之间的随机数。**含0不含1**，左闭右开。
       + `round()`：四舍五入。
       + `ceil()`：向上取整。
-      + `floor()`：向下取整。
-
+      + `floor()`：向下取整。`Math.floor(Math.random()*100)`：**[0, 100）**
+  
       **练习：产生n到m的随机数**
-
+  
       ```js
       function fun(n, m){
-          var number = Math.floor(Math.random()*100) + n;
-          if(number <= m) return number;
-          else fun(n, m);
+          let number = Math.floor(Math.random()*(m-n)) + n + 1;
+          return number;
       }
       ```
-
-      `Math.floor(Math.random()*100)`：**[0, 99]**
-
+      
+  
   + **RegExp**：正则表达式对象。
-
+  
     + 正则表达式：定义字符串的组成规则。
-
+  
       + 1.单个字符:[]
-
+  
         如：[a]   [ab]   [a-zA-Z0-9]    **注**：特殊符号代表特殊含义的单个字符：\d：单个数字     \w：单个单纯字符[a-zA-Z0-9]
-
+  
       + 2.量词符号
-
+  
         + ?：出现0或1次
         + *：出现0或多次
         + +：出现1或多次
-
+  
       + 3.开始和结束符号
-
+  
     + 正则对象
-
+  
       + 创建
-
+  
         ```js
         var reg = new RegExp("正则表达式");
         var reg = /正则表达式/;
         ```
-
+  
       + 方法
-
+  
         + `test(要验证的参数)`：验证指定的字符串是否符号正则定义的规范。
-
+  
   + **Global**
-
+  
     + 特点：全局对象。Global方法中封装的方法不需要对象就可以直接调用。
     + 方法：
       + `encodeURI(参数)`:把字符串编码为 URI。
+      
       + `decodeURI(参数)`: 解码某个编码的 URI。
+      
       + `encodeURIComponent(参数)`:把字符串编码为 URI 组件。**(编码、解码字符更多。)**
+      
       + `decodeURIComponent(参数)`:解码一个编码的 URI 组件。**(编码、解码字符更多。)**
+      
+        ```js
+        var str = "htpps://www.baidu.com?wd=共啊好给你涨";
+        var encode = encodeURI(str);
+        document.write(encode + "<br>");
+        document.write(decodeURI(encode) + "<br>");
+        
+        var str1 = "htpps://www.baidu.com?wd=弓长张";
+        var encode1 = encodeURIComponent(str1);
+        document.write(encode1 + "<br>");
+        document.write(decodeURIComponent(encode1));
+        
+        /*
+        htpps://www.baidu.com?wd=%E5%85%B1%E5%95%8A%E5%A5%BD%E7%BB%99%E4%BD%A0%E6%B6%A8
+        htpps://www.baidu.com?wd=共啊好给你涨
+        htpps%3A%2F%2Fwww.baidu.com%3Fwd%3D%E5%BC%93%E9%95%BF%E5%BC%A0
+        htpps://www.baidu.com?wd=弓长张123
+        */
+        ```
+      
       + `parseInt(参数)`:解析一个字符串并返回一个整数。（**逐一检测**每一个字符是否是数字，直到不是数字为止，将前面的数字部分转化为number。即开头必须是数字，否则转换为NaN。）
+      
       + `isNaN(参数)`:判断一个值是否是NaN。**（NaN不与任何值相等，包括它自己。）**
+      
       + `eval(参数)`:计算 JavaScript 字符串，并把它作为脚本代码来执行。
 
 ### 4-2、DOM简单学习
@@ -2916,7 +2953,7 @@ var element = document.getElementById("id值");//获取id=id值的元素对象
 
 + 直接在html标签上，指定事件的属性（操作），属性值就是js代码。
 
-  + 事件：onclick---单击事件
+  + 事件：**onclick---单击事件**
 
   ```js
   <script>
@@ -2969,7 +3006,6 @@ var element = document.getElementById("id值");//获取id=id值的元素对象
   </html>
   ```
 
-  
 
 ## 5、BOM
 

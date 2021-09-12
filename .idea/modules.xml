@@ -2,6 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/cralwer/Crawler_Test/Crawler_Test.iml" filepath="$PROJECT_DIR$/cralwer/Crawler_Test/Crawler_Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cralwer/JD_1/JD_1.iml" filepath="$PROJECT_DIR$/cralwer/JD_1/JD_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cralwer/Poems_Crawler/Poems_Crawler.iml" filepath="$PROJECT_DIR$/cralwer/Poems_Crawler/Poems_Crawler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cralwer/itcast_crawler_iob/ayulong-crawler-job.iml" filepath="$PROJECT_DIR$/cralwer/itcast_crawler_iob/ayulong-crawler-job.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cralwer/crawler_webmagic_poem/ayulong-crawler-job (1).iml" filepath="$PROJECT_DIR$/cralwer/crawler_webmagic_poem/ayulong-crawler-job (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/cralwer/itcast_crawler_fisrt/com.itcast_crawler_fisrt.iml" filepath="$PROJECT_DIR$/cralwer/itcast_crawler_fisrt/com.itcast_crawler_fisrt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cralwer/itcast_crawler_WebMagic/itcast_crawler_WebMagic.iml" filepath="$PROJECT_DIR$/cralwer/itcast_crawler_WebMagic/itcast_crawler_WebMagic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cralwer/crawler_jd/itcast_crawler_jd.iml" filepath="$PROJECT_DIR$/cralwer/crawler_jd/itcast_crawler_jd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cralwer/crawler_gai/itcast_crawler_jd (1).iml" filepath="$PROJECT_DIR$/cralwer/crawler_gai/itcast_crawler_jd (1).iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java.iml" filepath="$PROJECT_DIR$/.idea/java.iml" />
     </modules>
   </component>
