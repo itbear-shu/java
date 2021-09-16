@@ -1,5 +1,6 @@
 public class Main {
     public static void main(String[] args) throws Exception {
-        new Dourls().getUrls();
+        new Dourls(50).getUrls();
+        new Dourls(150).getUrls();
     }
 }

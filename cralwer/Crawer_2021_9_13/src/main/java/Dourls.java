@@ -16,43 +16,59 @@ public class Dourls {
     private final JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
     private static Long novel_count;
     private static Long content_count;
+    private int co = 0;
+
+    Dourls() {
+
+    }
+
+    Dourls(int co) {
+        this.co = co;
+    }
 
     public void getUrls() {
         novel_count = template.queryForObject("select max(id) from novel ", Long.class);
         content_count = template.queryForObject("select max(id) from content ", Long.class);
-        List<Map<String, Object>> list_novel = template.queryForList("select name, writer, type, state, word_count, source, n_url, f_url from novel");
+        final List<Map<String, Object>> list_novel = template.queryForList("select name, writer, type, state, word_count, source, n_url, f_url from novel");
 //        List<Map<String, Object>> list_content = template.queryForList("select number, title, word_count, update_time, url, cont, content_id from content");
-        for (int i = 50; i <= 240; i++) {
-            System.out.println("page = " + i);
-            String url = "https://xs.sogou.com/0_0_1_0_heat/?pageNo=" + i;
-            ///获取每一页url
-            //获取整个页面的document对象
-            Document document = null;
-            try {
-                document = Jsoup.parse(new URL(url), 100000);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //获取li标签
-            Elements ele = document.select("body > div.wrapper > div.box-center.sx-wp.clear > div.sx-ret.fr > ul > li");
-            for (Element li : ele) {
-                //获取封面url
-                String f_url = "https:" + li.select("a > img").attr("src");
-                //获取书本所有章节页面url
-                String n = ele.select("div > h3 > a").attr("href");
-                String n_url = "https://xs.sogou.com" + n;
-                String id = n.split("/")[2];
-                String list_url = "https://xs.sogou.com/list/" + id;
-                Long count = null;
-                try {
-                    count = doNurl(n_url, f_url, list_novel);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        ExecutorService es = Executors.newFixedThreadPool(100);
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+                for (int i = co; i <= 240; i++) {
+                    System.out.println("page = " + i);
+                    String url = "https://xs.sogou.com/0_0_1_0_heat/?pageNo=" + i;
+                    ///获取每一页url
+                    //获取整个页面的document对象
+                    Document document = null;
+                    try {
+                        document = Jsoup.parse(new URL(url), 100000);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //获取li标签
+                    Elements ele = document.select("body > div.wrapper > div.box-center.sx-wp.clear > div.sx-ret.fr > ul > li");
+                    for (Element li : ele) {
+                        //获取封面url
+                        String f_url = "https:" + li.select("a > img").attr("src");
+                        //获取书本所有章节页面url
+                        String n = ele.select("div > h3 > a").attr("href");
+                        String n_url = "https://xs.sogou.com" + n;
+                        String id = n.split("/")[2];
+                        String list_url = "https://xs.sogou.com/list/" + id;
+                        Long count = null;
+                        try {
+                            count = doNurl(n_url, f_url, list_novel);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        doListUrl(list_url, count);
+                    }
                 }
-//                doListUrl(list_url, count, list_content);
-                doListUrl(list_url, count);
             }
-        }
+        };
+        es.submit(run);
+
     }
 
     public boolean isContainsNC(List<Map<String, Object>> list, String s) {
@@ -63,7 +79,6 @@ public class Dourls {
         }
         return false;
     }
-
 
     public Long doNurl(String n_url, String f_url, List<Map<String, Object>> list_novel) throws Exception {
         Document doc = Jsoup.parse(new URL(n_url), 100000);
@@ -83,11 +98,11 @@ public class Dourls {
             System.out.println("[已存在-]" + novel);
         }
         //最后返回id
-        return template.queryForObject("select max(id) from novel where name = '" + novel.getName() + "' and writer = '" + novel.getWriter() + "\'", Long.class);
+        return template.queryForObject("select min(id) from novel where name = '" + novel.getName() + "' and writer = '" + novel.getWriter() + "\'", Long.class);
     }
 
     public void doListUrl(final String list_url, final Long content_id) {
-        ExecutorService es = Executors.newFixedThreadPool(30);
+        ExecutorService es = Executors.newFixedThreadPool(100);
         Runnable run = new Runnable() {
             public void run() {
                 try {
@@ -107,13 +122,9 @@ public class Dourls {
                         String update_time = doc.select("div.info").text().split("：")[4];//更新时间
                         String cont = doc.select("div#contentWp").text();
                         Content content = new Content(number, title, word_count, update_time, href, cont, content_id);
-//                        if (!isContainsNC(list_content, content.toString())) {
                         template.update("insert into content values (null, ?, ?, ?, ?, ?, ?, ?, default )",
                                 number, title, content_id, word_count, cont, href, update_time);
                         System.out.println("[" + ++content_count + "]" + content);
-//                        } else {
-//                            System.out.println("[已存在+] " + content);
-//                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
