@@ -1,8 +1,12 @@
+package Third;
+
+import Third.Content;
+import Third.JDBCUtils;
+import Third.Novel;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.IOException;
@@ -38,7 +42,6 @@ public class Dourls {
                 for (int i = co; i <= 240; i++) {
                     System.out.println("page = " + i);
                     String url = "https://xs.sogou.com/0_0_1_0_heat/?pageNo=" + i;
-                    ///获取每一页url
                     //获取整个页面的document对象
                     Document document = null;
                     try {
@@ -52,7 +55,7 @@ public class Dourls {
                         //获取封面url
                         String f_url = "https:" + li.select("a > img").attr("src");
                         //获取书本所有章节页面url
-                        String n = ele.select("div > h3 > a").attr("href");
+                        String n = li.select("div > h3 > a").attr("href");
                         String n_url = "https://xs.sogou.com" + n;
                         String id = n.split("/")[2];
                         String list_url = "https://xs.sogou.com/list/" + id;
@@ -88,7 +91,7 @@ public class Dourls {
         String state = doc.select("div.field > span:nth-child(3)").text().split("：")[1];//书的完成状态
         Integer word_count = Integer.valueOf(doc.select("div.field > span:nth-child(4)").text().split("：")[1].split("万")[0]);//单位：万
         String source = doc.select("div.field > span:nth-child(5)").text().split("：")[1];//来源
-        Novel novel = new Novel(name, writer, type, state, word_count, source, n_url, f_url);
+        First.Novel novel = new Novel(name, writer, type, state, word_count, source, n_url, f_url);
         if (!isContainsNC(list_novel, novel.toString())) {
             //如果数据库中没有改novel，则保存起来
             template.update("insert into novel values (null, ?, ?, ?, ?, ?, ?, ?, ?, default)",

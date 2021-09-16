@@ -1,6 +1,9 @@
+import First.Content;
+import First.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -73,5 +76,12 @@ public class Test {
             System.out.println(stringObjectMap);
         }
     }
+
+    @org.junit.Test
+    public void test06() {
+        Date date = new Date();
+        System.out.println(date);
+    }
+
 
 }

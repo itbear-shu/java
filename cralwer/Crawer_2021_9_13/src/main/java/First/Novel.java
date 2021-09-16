@@ -1,4 +1,5 @@
-import java.util.Date;
+package First;
+
 import java.util.Objects;
 
 public class Novel {
